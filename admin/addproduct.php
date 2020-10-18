@@ -126,7 +126,7 @@ if (isset($_POST['submit'])) {
                         <?php
                         if ($result->num_rows > 0) {
                             while ($row = $result->fetch_assoc()) {
-                                echo "<option value='".$row['id']."'>".$row['name']."</option>";
+                                echo "<option value='".$row['id']."'>".$row['category_name']."</option>";
                             }
                         } else {
                             echo "0 results";
@@ -147,7 +147,7 @@ if (isset($_POST['submit'])) {
                         
                         if ($result1->num_rows > 0) {
                             while ($row1 = $result1->fetch_assoc()) {
-                                echo "<input type='checkbox' name='check_list[]' value='".$row1['tag_id']."' />".$row1['name']."";
+                                echo "<input type='checkbox' name='check_list[]' value='".$row1['tag_id']."' />".$row1['tagname']."";
                             }
                         } else {
                             echo "0 results";

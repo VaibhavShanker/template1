@@ -1,11 +1,16 @@
+<?php
+  require "config.php";
+    if(isset($_POST['id'])) {
+      $id=$_POST['id'];
+    }
+?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">    
-    <title>Daily Shop | Product Detail</title>
-    
+    <title>Daily Shop | Product Detail</title>    
     <!-- Font awesome -->
     <link href="css/font-awesome.css" rel="stylesheet">
     <!-- Bootstrap -->
@@ -22,23 +27,17 @@
     <link id="switcher" href="css/theme-color/default-theme.css" rel="stylesheet">
     <!-- Top Slider CSS -->
     <link href="css/sequence-theme.modern-slide-in.css" rel="stylesheet" media="all">
-
     <!-- Main style sheet -->
     <link href="css/style.css" rel="stylesheet">    
-
     <!-- Google Font -->
     <link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
-    <link href='https://fonts.googleapis.com/css?family=Raleway' rel='stylesheet' type='text/css'>
-    
-
+    <link href='https://fonts.googleapis.com/css?family=Raleway' rel='stylesheet' type='text/css'>    
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
-  
-
   </head>
   <body>  
     <!-- wpf loader Two -->
@@ -51,8 +50,6 @@
     <!-- SCROLL TOP BUTTON -->
     <a class="scrollToTop" href="#"><i class="fa fa-chevron-up"></i></a>
     <!-- END SCROLL TOP BUTTON -->
-
-
   <!-- Start header section -->
   <header id="aa-header">
     <!-- start header top  -->
@@ -103,8 +100,8 @@
                 <ul class="aa-head-top-nav-right">
                   <li><a href="account.html">My Account</a></li>
                   <li class="hidden-xs"><a href="wishlist.html">Wishlist</a></li>
-                  <li class="hidden-xs"><a href="cart.html">My Cart</a></li>
-                  <li class="hidden-xs"><a href="checkout.html">Checkout</a></li>
+                  <li class="hidden-xs"><a href="cart.php">My Cart</a></li>
+                  <li class="hidden-xs"><a href="checkout.php">Checkout</a></li>
                   <li><a href="" data-toggle="modal" data-target="#login-modal">Login</a></li>
                 </ul>
               </div>
@@ -346,72 +343,75 @@
             <div class="aa-product-details-content">
               <div class="row">
                 <!-- Modal view slider -->
-                <div class="col-md-5 col-sm-5 col-xs-12">                              
-                  <div class="aa-product-view-slider">                                
-                    <div id="demo-1" class="simpleLens-gallery-container">
-                      <div class="simpleLens-container">
-                        <div class="simpleLens-big-image-container"><a data-lens-image="img/view-slider/large/polo-shirt-1.png" class="simpleLens-lens-image"><img src="img/view-slider/medium/polo-shirt-1.png" class="simpleLens-big-image"></a></div>
-                      </div>
-                      <div class="simpleLens-thumbnails-container">
-                          <a data-big-image="img/view-slider/medium/polo-shirt-1.png" data-lens-image="img/view-slider/large/polo-shirt-1.png" class="simpleLens-thumbnail-wrapper" href="#">
-                            <img src="img/view-slider/thumbnail/polo-shirt-1.png">
-                          </a>                                    
-                          <a data-big-image="img/view-slider/medium/polo-shirt-3.png" data-lens-image="img/view-slider/large/polo-shirt-3.png" class="simpleLens-thumbnail-wrapper" href="#">
-                            <img src="img/view-slider/thumbnail/polo-shirt-3.png">
-                          </a>
-                          <a data-big-image="img/view-slider/medium/polo-shirt-4.png" data-lens-image="img/view-slider/large/polo-shirt-4.png" class="simpleLens-thumbnail-wrapper" href="#">
-                            <img src="img/view-slider/thumbnail/polo-shirt-4.png">
-                          </a>
+                <?php
+
+                require "config.php";
+
+                $sql="SELECT * from products WHERE product_id='".$_GET['id']."'";
+                $result=$conn->query($sql);
+                if($result->num_rows>0) {
+                  while($row=$result->fetch_assoc()) {
+                  echo '<div class="col-md-5 col-sm-5 col-xs-12">                              
+                    <div class="aa-product-view-slider">                                
+                      <div id="demo-1" class="simpleLens-gallery-container">
+                        <div class="simpleLens-container">
+                          <div class="simpleLens-big-image-container"><a data-lens-image="img/women/'.$row['image'].'" class="simpleLens-lens-image"><img src="img/women/'.$row['image'].'" class="simpleLens-big-image"></a></div>
+                        </div>
+                        <div class="simpleLens-thumbnails-container">          
+                        </div>
                       </div>
                     </div>
                   </div>
-                </div>
-                <!-- Modal view content -->
-                <div class="col-md-7 col-sm-7 col-xs-12">
-                  <div class="aa-product-view-content">
-                    <h3>T-Shirt</h3>
-                    <div class="aa-price-block">
-                      <span class="aa-product-view-price">$34.99</span>
-                      <p class="aa-product-avilability">Avilability: <span>In stock</span></p>
+                  <!-- Modal view content -->
+                  <div class="col-md-7 col-sm-7 col-xs-12">
+                    <div class="aa-product-view-content">
+                      <h3>'.$row['name'].'</h3>
+                      <div class="aa-price-block">
+                        <span class="aa-product-view-price">'.$row['price'].'</span>
+                        <p class="aa-product-avilability">Avilability: <span>In stock</span></p>
+                      </div>
+                      <p>'.$row['long_description'].'</p>
+                      <h4>Size</h4>
+                      <div class="aa-prod-view-size">
+                        <a href="#">S</a>
+                        <a href="#">M</a>
+                        <a href="#">L</a>
+                        <a href="#">XL</a>
+                      </div>
+                      <h4>Color</h4>
+                      <div class="aa-color-tag">
+                        <a href="#" class="aa-color-green"></a>
+                        <a href="#" class="aa-color-yellow"></a>
+                        <a href="#" class="aa-color-pink"></a>                      
+                        <a href="#" class="aa-color-black"></a>
+                        <a href="#" class="aa-color-white"></a>                      
+                      </div>
+                      <div class="aa-prod-quantity">
+                        <form action="">
+                          <select id="" name="">
+                            <option selected="1" value="0">1</option>
+                            <option value="1">2</option>
+                            <option value="2">3</option>
+                            <option value="3">4</option>
+                            <option value="4">5</option>
+                            <option value="5">6</option>
+                          </select>
+                        </form>
+                        <p class="aa-prod-category">
+                          Category: <a href="#">Polo T-Shirt</a>
+                        </p>
+                      </div>
+                      <div class="aa-prod-view-bottom">
+                        <a class="aa-add-to-cart-btn" href="#">Add To Cart</a>
+                        <a class="aa-add-to-cart-btn" href="#">Wishlist</a>
+                        <a class="aa-add-to-cart-btn" href="#">Compare</a>
+                      </div>
                     </div>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Officiis animi, veritatis quae repudiandae quod nulla porro quidem, itaque quis quaerat!</p>
-                    <h4>Size</h4>
-                    <div class="aa-prod-view-size">
-                      <a href="#">S</a>
-                      <a href="#">M</a>
-                      <a href="#">L</a>
-                      <a href="#">XL</a>
-                    </div>
-                    <h4>Color</h4>
-                    <div class="aa-color-tag">
-                      <a href="#" class="aa-color-green"></a>
-                      <a href="#" class="aa-color-yellow"></a>
-                      <a href="#" class="aa-color-pink"></a>                      
-                      <a href="#" class="aa-color-black"></a>
-                      <a href="#" class="aa-color-white"></a>                      
-                    </div>
-                    <div class="aa-prod-quantity">
-                      <form action="">
-                        <select id="" name="">
-                          <option selected="1" value="0">1</option>
-                          <option value="1">2</option>
-                          <option value="2">3</option>
-                          <option value="3">4</option>
-                          <option value="4">5</option>
-                          <option value="5">6</option>
-                        </select>
-                      </form>
-                      <p class="aa-prod-category">
-                        Category: <a href="#">Polo T-Shirt</a>
-                      </p>
-                    </div>
-                    <div class="aa-prod-view-bottom">
-                      <a class="aa-add-to-cart-btn" href="#">Add To Cart</a>
-                      <a class="aa-add-to-cart-btn" href="#">Wishlist</a>
-                      <a class="aa-add-to-cart-btn" href="#">Compare</a>
-                    </div>
-                  </div>
-                </div>
+                  </div>';
+                  }
+                } 
+                ?>
+                
               </div>
             </div>
             <div class="aa-product-details-bottom">

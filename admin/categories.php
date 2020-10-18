@@ -1,296 +1,110 @@
-<?php include "header.php" ?>
-<?php include "sidebar.php" ?>
-<div id="main-content"> <!-- Main Content Section with everything -->
-<noscript> <!-- Show a notification if the user has disabled javascript -->
-<div class="notification error png_bg">
-<div>
-Javascript is disabled or is not supported by your browser. Please <a href="http://browsehappy.com/" title="Upgrade to a better browser">upgrade</a> your browser or <a href="http://www.google.com/support/bin/answer.py?answer=23852" title="Enable Javascript in your browser">enable</a> Javascript to navigate the interface properly.
-</div>
-</div>
-</noscript>
-<!-- Page Head -->
-<h2>Welcome John</h2>
-<p id="page-intro">What would you like to do?</p>
+<?php 
+	require "header.php";
+	require "sidebar.php";
+	require "config.php";
+	
+    
+    
 
-<div class="clear"></div> <!-- End .clear -->
-<div class="content-box"><!-- Start Content Box -->
-<div class="content-box-header">
-<h3>Products</h3>
-<ul class="content-box-tabs">
-<li><a href="#tab1" class="default-tab">Manage</a></li> <!-- href must be unique and match the id of target div -->
-<li><a href="#tab2">Add</a></li>
-</ul>
-<div class="clear"></div>
-</div> <!-- End .content-box-header -->
-<div class="content-box-content">
-<div class="tab-content default-tab" id="tab1"> <!-- This is the target div. id must match the href of this div's tab -->
-<div class="notification attention png_bg">
-<a href="#" class="close"><img src="resources/images/icons/cross_grey_small.png" title="Close this notification" alt="close" /></a>
-<div>
-This is a Content Box. You can put whatever you want in it. By the way, you can close this notification with the top-right cross.
-</div>
-</div>
-<table>
-<thead>
-<tr>
-<th><input class="check-all" type="checkbox" /></th>
-<th>name</th>
-<th>price</th>
-<th>image</th>
-<th>short_desc</th>
-<th>long_desc</th>
+    
+$errors=array();
 
-</tr>
+if (isset($_POST['submit'])) {
+    $name=isset($_POST['name'])?$_POST['name']:'';
+       if (count($errors)==0) {
+        $sql="INSERT INTO categories (name)
+	    VALUES ('".$name."')";
 
-</thead>
+        if ($conn->query($sql) == true) {
+            echo "<script>alert('Categories ADD')</script>";   
+                 
+            
+        } else {
+            $errors[]=array("input"=>"form","msg"=>"*");
+        }
+        
 
-<tfoot>
-<tr>
-<td colspan="6">
-<div class="bulk-actions align-left">
-<select name="dropdown">
-<option value="option1">Choose an action...</option>
-<option value="option2">Edit</option>
-<option value="option3">Delete</option>
-</select>
-<a class="button" href="#">Apply to selected</a>
-</div>
-
-<div class="pagination">
-<a href="#" title="First Page">&laquo; First</a><a href="#" title="Previous Page">&laquo; Previous</a>
-<a href="#" class="number" title="1">1</a>
-<a href="#" class="number" title="2">2</a>
-<a href="#" class="number current" title="3">3</a>
-<a href="#" class="number" title="4">4</a>
-<a href="#" title="Next Page">Next &raquo;</a><a href="#" title="Last Page">Last &raquo;</a>
-</div> <!-- End .pagination -->
-<div class="clear"></div>
-</td>
-</tr>
-</tfoot>
-
-<tbody>
-<tr>
-<td><input type="checkbox" /></td>
-<td>Lorem ipsum dolor</td>
-<td><a href="#" title="title">Sit amet</a></td>
-<td>Consectetur adipiscing</td>
-<td>Donec tortor diam</td>
-<td>
-<!-- Icons -->
-<a href="#" title="Edit"><img src="resources/images/icons/pencil.png" alt="Edit" /></a>
-<a href="#" title="Delete"><img src="resources/images/icons/cross.png" alt="Delete" /></a> 
-<a href="#" title="Edit Meta"><img src="resources/images/icons/hammer_screwdriver.png" alt="Edit Meta" /></a>
-</td>
-</tr>
-
-<tr>
-<td><input type="checkbox" /></td>
-<td>Lorem ipsum dolor</td>
-<td><a href="#" title="title">Sit amet</a></td>
-<td>Consectetur adipiscing</td>
-<td>Donec tortor diam</td>
-<td>
-<!-- Icons -->
-<a href="#" title="Edit"><img src="resources/images/icons/pencil.png" alt="Edit" /></a>
-<a href="#" title="Delete"><img src="resources/images/icons/cross.png" alt="Delete" /></a> 
-<a href="#" title="Edit Meta"><img src="resources/images/icons/hammer_screwdriver.png" alt="Edit Meta" /></a>
-</td>
-</tr>
-
-<tr>
-<td><input type="checkbox" /></td>
-<td>Lorem ipsum dolor</td>
-<td><a href="#" title="title">Sit amet</a></td>
-<td>Consectetur adipiscing</td>
-<td>Donec tortor diam</td>
-<td>
-<!-- Icons -->
-<a href="#" title="Edit"><img src="resources/images/icons/pencil.png" alt="Edit" /></a>
-<a href="#" title="Delete"><img src="resources/images/icons/cross.png" alt="Delete" /></a> 
-<a href="#" title="Edit Meta"><img src="resources/images/icons/hammer_screwdriver.png" alt="Edit Meta" /></a>
-</td>
-</tr>
-
-<tr>
-<td><input type="checkbox" /></td>
-<td>Lorem ipsum dolor</td>
-<td><a href="#" title="title">Sit amet</a></td>
-<td>Consectetur adipiscing</td>
-<td>Donec tortor diam</td>
-<td>
-<!-- Icons -->
-<a href="#" title="Edit"><img src="resources/images/icons/pencil.png" alt="Edit" /></a>
-<a href="#" title="Delete"><img src="resources/images/icons/cross.png" alt="Delete" /></a> 
-<a href="#" title="Edit Meta"><img src="resources/images/icons/hammer_screwdriver.png" alt="Edit Meta" /></a>
-</td>
-</tr>
-
-<tr>
-<td><input type="checkbox" /></td>
-<td>Lorem ipsum dolor</td>
-<td><a href="#" title="title">Sit amet</a></td>
-<td>Consectetur adipiscing</td>
-<td>Donec tortor diam</td>
-<td>
-<!-- Icons -->
-<a href="#" title="Edit"><img src="resources/images/icons/pencil.png" alt="Edit" /></a>
-<a href="#" title="Delete"><img src="resources/images/icons/cross.png" alt="Delete" /></a> 
-<a href="#" title="Edit Meta"><img src="resources/images/icons/hammer_screwdriver.png" alt="Edit Meta" /></a>
-</td>
-</tr>
-
-<tr>
-<td><input type="checkbox" /></td>
-<td>Lorem ipsum dolor</td>
-<td><a href="#" title="title">Sit amet</a></td>
-<td>Consectetur adipiscing</td>
-<td>Donec tortor diam</td>
-<td>
-<!-- Icons -->
-<a href="#" title="Edit"><img src="resources/images/icons/pencil.png" alt="Edit" /></a>
-<a href="#" title="Delete"><img src="resources/images/icons/cross.png" alt="Delete" /></a> 
-<a href="#" title="Edit Meta"><img src="resources/images/icons/hammer_screwdriver.png" alt="Edit Meta" /></a>
-</td>
-</tr>
-
-<tr>
-<td><input type="checkbox" /></td>
-<td>Lorem ipsum dolor</td>
-<td><a href="#" title="title">Sit amet</a></td>
-<td>Consectetur adipiscing</td>
-<td>Donec tortor diam</td>
-<td>
-<!-- Icons -->
-<a href="#" title="Edit"><img src="resources/images/icons/pencil.png" alt="Edit" /></a>
-<a href="#" title="Delete"><img src="resources/images/icons/cross.png" alt="Delete" /></a> 
-<a href="#" title="Edit Meta"><img src="resources/images/icons/hammer_screwdriver.png" alt="Edit Meta" /></a>
-</td>
-</tr>
-
-<tr>
-<td><input type="checkbox" /></td>
-<td>Lorem ipsum dolor</td>
-<td><a href="#" title="title">Sit amet</a></td>
-<td>Consectetur adipiscing</td>
-<td>Donec tortor diam</td>
-<td>
-<!-- Icons -->
-<a href="#" title="Edit"><img src="resources/images/icons/pencil.png" alt="Edit" /></a>
-<a href="#" title="Delete"><img src="resources/images/icons/cross.png" alt="Delete" /></a> 
-<a href="#" title="Edit Meta"><img src="resources/images/icons/hammer_screwdriver.png" alt="Edit Meta" /></a>
-</td>
-</tr>
-</tbody>
-
-</table>
-
-</div> <!-- End #tab1 -->
-
-<div class="tab-content" id="tab2">
-
-<form action="#" method="post">
-
-<fieldset> <!-- Set class to "column-left" or "column-right" on fieldsets to divide the form into columns -->
-
-<p>
-<label>Name</label>
-<input class="text-input medium-input datepicker" type="text" id="medium-input" name="medium-input" />
-<br /><small>Products Name</small>
-</p>
-
-<p>
-<label>Price</label>
-<input class="text-input small-input" type="text" id="small-input" name="small-input" /> <!-- Classes for input-notification: success, error, information, attention -->
-<br /><small>Products Price</small>
-</p>
-
-<p>
-<label>Images</label>
-<input class="text-input small-input" type="file" id="small-input"
- name="image" />
-</p>
-
-<p>
-<label>Category</label>              
-<select name="dropdown" class="small-input">
-<option value="option1">Men</option>
-<option value="option2">Women</option>
-<option value="option3">Kids</option>
-<option value="option4">Electronics</option>
-<option value="option5">Sports</option>
-</select> 
-</p>
+    } else {
+        foreach ($errors as $error) {
+            echo "*".$error['msg'];
+        }
+    }
+    
+}
 
 
-<p>
-<label>Tags</label>
-<input type="checkbox" name="checkbox1" /> Fashion
-<input type="checkbox" name="checkbox2" /> Ecommerce
-<input type="checkbox" name="checkbox3" /> Shop 
-<input type="checkbox" name="checkbox4" /> Hand Bag
-<input type="checkbox" name="checkbox3" /> Laptop
-<input type="checkbox" name="checkbox4" /> Headphone
-</p>
+?>
+
+
+		
+		<div id="main-content"> <!-- Main Content Section with everything -->
+			
+			<noscript> <!-- Show a notification if the user has disabled javascript -->
+				<div class="notification error png_bg">
+					<div>
+						Javascript is disabled or is not supported by your browser. Please <a href="http://browsehappy.com/" title="Upgrade to a better browser">upgrade</a> your browser or <a href="http://www.google.com/support/bin/answer.py?answer=23852" title="Enable Javascript in your browser">enable</a> Javascript to navigate the interface properly.
+					</div>
+				</div>
+			</noscript>
+			
+			<!-- Page Head -->
+			<h2>Welcome John</h2>
+			<p id="page-intro">What would you like to do?</p>
+			
+			
+			
+			<div class="clear"></div> <!-- End .clear -->
+			
+			<div class="content-box"><!-- Start Content Box -->
+				
+				<div class="content-box-header">
+					
+					<h3>ADD Categories</h3>
+					
+					<ul class="content-box-tabs">
+						
+					</ul>
+					
+					<div class="clear"></div>
+					
+				</div> 
+						
+										
+										
+										
+					<div class="tab-content" id="tab2" style="margin-left:30px;margin-top:20px;">
+					
+						<form action="new.php" method="post">
+							
+							<fieldset> <!-- Set class to "column-left" or "column-right" on fieldsets to divide the form into columns -->
+								
+								
+								
+								<p>
+									<label>Name</label>
+									<input class="text-input medium-input datepicker" type="text" id="medium-input" name="name" required/>
+									<br /><small>Enter the name of the product</small>
+								</p>
+
+								
+								<p>
+									<input class="button" type="submit" name="submit" value="ADD" />
+								</p>
+								
+							</fieldset>
+							
+							<div class="clear"></div><!-- End .clear -->
+							
+						</form>
+						
+					</div> <!-- End #tab2 -->        
+					
+				</div> <!-- End .content-box-content -->
+				
+			</div> <!-- End .content-box -->
+
+			<div class="clear"></div>
 
 
 
-
-
-<p>
-<label>Description</label>
-<textarea class="text-input textarea wysiwyg" id="textarea" name="textfield" cols="79" rows="15"></textarea>
-</p>
-
-<p>
-<input class="button" type="submit" value="Submit" />
-</p>
-
-</fieldset>
-
-<div class="clear"></div><!-- End .clear -->
-
-</form>
-
-</div> <!-- End #tab2 -->        
-
-</div> <!-- End .content-box-content -->
-
-</div> <!-- End .content-box -->
-
-<<div class="clear"></div>
-
-
-<!-- Start Notifications -->
-<!--
-<div class="notification attention png_bg">
-<a href="#" class="close"><img src="resources/images/icons/cross_grey_small.png" title="Close this notification" alt="close" /></a>
-<div>
-Attention notification. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin vulputate, sapien quis fermentum luctus, libero. 
-</div>
-</div>
-
-<div class="notification information png_bg">
-<a href="#" class="close"><img src="resources/images/icons/cross_grey_small.png" title="Close this notification" alt="close" /></a>
-<div>
-Information notification. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin vulputate, sapien quis fermentum luctus, libero.
-</div>
-</div>
-
-<div class="notification success png_bg">
-<a href="#" class="close"><img src="resources/images/icons/cross_grey_small.png" title="Close this notification" alt="close" /></a>
-<div>
-Success notification. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin vulputate, sapien quis fermentum luctus, libero.
-</div>
-</div>
-
-<div class="notification error png_bg">
-<a href="#" class="close"><img src="resources/images/icons/cross_grey_small.png" title="Close this notification" alt="close" /></a>
-<div>
-Error notification. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin vulputate, sapien quis fermentum luctus, libero.
-</div>
-</div>
--->
-<!-- End Notifications -->
-
-<?php include "footer.php" ?>
+<?php require "footer.php"; ?>

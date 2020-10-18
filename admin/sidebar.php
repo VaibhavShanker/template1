@@ -5,7 +5,7 @@
       <?php
          $filename=basename($_SERVER['REQUEST_URI']);
          $productmenu=array('addproduct.php',
-         'product.php','categories.php','tag.php');
+         'manageproduct.php','categories.php','tag.php');
          $usermenu=array('adduser.php','manageuser.php');
          $ordermenu=array('manageorder.php');
 
@@ -42,8 +42,8 @@
                Products
             </a>
             <ul>
-               <li><a <?php if ($filename=='addproduct.php') : ?>class="current"<?php endif;?> href="addproduct.php">Add Products</a></li>
-               <li><a <?php if ($filename=='product.php') : ?>class="current"<?php endif;?> href="product.php">Manage Products</a></li>
+               <li><a <?php if ($filename=='new.php') : ?>class="current"<?php endif;?> href="new.php">Add Products</a></li>
+               <li><a <?php if ($filename=='manageproduct.php') : ?>class="current"<?php endif;?> href="manageproduct.php">Manage Products</a></li>
                <!-- Add class "current" to sub menu items also -->
                <li><a <?php if ($filename=='categories.php') : ?>class="current"<?php endif;?> href="categories.php">Add Categories</a></li>
                <li><a <?php if ($filename=='tag.php') : ?>class="current"<?php endif;?> href="tag.php">Add Tags</a></li>
